@@ -28,3 +28,11 @@
 
 * 함수 밖에 store라는 객체를 이용해서 페이지 정보가 담기는 currentPage 변수를 만들어주었다.
 * hash 이벤트가 세부정보를 보여주는 경우와 페이지정보를 담은 목차로 이동하는 경우 두가지로 구분하기 위해 /page/, /show/를 사용했다.
+
+## 06. 복잡한 UI 구현을 위한 준비 작업- 템플릿
+
+- UI 구현하기 전에 복잡도를 줄이기 위해 템플릿 형태로 만들어 준다.
+
+* 템플릿을 통해 UI의 구조를 명확하게 알 수 있게 되었다.
+* tailwindcss를 이용해서 편리하게 UI를 만들어보자. (https://tailwindcss.com/docs/installation)
+* mx(margin, x는 폭) p-4(padding, 4px)
