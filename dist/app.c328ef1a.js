@@ -132,25 +132,38 @@ function getData(url) {
   return JSON.parse(ajax.response);
 }
 
-var newsFeed = getData(NEWS_URL);
-var ul = document.createElement("ul");
-window.addEventListener("hashchange", function () {
+function newsFeed() {
+  var newsFeed = getData(NEWS_URL);
+  var newsList = [];
+  newsList.push("<ul>");
+
+  for (var i = 0; i < 10; i++) {
+    newsList.push("\n    <li>\n      <a href=\"#".concat(newsFeed[i].id, "\">\n        ").concat(newsFeed[i].title, " (").concat(newsFeed[i].comments_count, ")\n      </a>\n    </li>"));
+  }
+
+  newsList.push("</ul>");
+  container.innerHTML = newsList.join("");
+}
+
+function newsDetail() {
   var id = location.hash.substr(1); //첫번쨰부터 끝까지의 문자열만 반환(#을 제거한 숫자값만 얻을 수 있다.)
 
   var newsContent = getData(CONTENT_URL.replace("@id", id));
-  var title = document.createElement("h1");
-  title.innerHTML = newsContent.title;
-  content.appendChild(title); // console.log("해시가 변경됨");
-});
-
-for (var i = 0; i < 10; i++) {
-  var div = document.createElement("div");
-  div.innerHTML = "\n  <li>\n    <a href=\"#".concat(newsFeed[i].id, "\">\n    ").concat(newsFeed[i].title, " (").concat(newsFeed[i].comments_count, ")\n    </a>\n  </li>");
-  ul.appendChild(div.firstElementChild);
+  container.innerHTML = "\n    <h1>".concat(newsContent.title, " </h1>\n    <div>\n      <a href=\"#\">\uBAA9\uB85D\uC73C\uB85C</a>\n    </div>\n   ");
 }
 
-container.appendChild(ul);
-container.appendChild(content);
+function router() {
+  var routePath = location.hash;
+
+  if (routePath === "") {
+    newsFeed();
+  } else {
+    newsDetail();
+  }
+}
+
+window.addEventListener("hashchange", router);
+router();
 },{}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
