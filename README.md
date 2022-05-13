@@ -36,3 +36,13 @@
 * 템플릿을 통해 UI의 구조를 명확하게 알 수 있게 되었다.
 * tailwindcss를 이용해서 편리하게 UI를 만들어보자. (https://tailwindcss.com/docs/installation)
 * mx(margin, x는 폭) p-4(padding, 4px)
+
+## 07. 댓글 목록이 표시되는 아름다운 UI 만들기
+
+- 마킹된 값의 개수만큼 replace가 등장하는 등 템플릿 방식의 단점이 존재한다.
+- handlebars 라이브러리를 이용해서 바꿔보기(https://handlebarsjs.com/)
+
+* cdnjs(https://cdnjs.com/)를 이용해서 fontawesome 적용하기(https://fontawesome.com/icons)
+* cndjs 사이트에서 fontawesome 검색 후 cdn을 카피해서 html에 붙여넣어준다.
+
+* 재귀 함수를 통해 comments의 하위 댓글들을 끝까지 출력
