@@ -5,6 +5,7 @@ const NEWS_URL = "https://api.hnpwa.com/v0/news/1.json"; //주소가 바뀔 가�
 const CONTENT_URL = "https://api.hnpwa.com/v0/item/@id.json";
 const store = {
   currentPage: 1,
+  feeds: [],
 };
 
 function getData(url) {
@@ -13,8 +14,15 @@ function getData(url) {
   return JSON.parse(ajax.response);
 }
 
+function makeFeeds(feeds) {
+  for (let i = 0; i < feeds.length; i++) {
+    feeds[i].read = false;
+  }
+  return feeds;
+}
+
 function newsFeed() {
-  const newsFeed = getData(NEWS_URL);
+  let newsFeed = store.feeds;
   const newsList = [];
   let template = `
   <div class="bg-gray-600 min-h-screen">
@@ -39,6 +47,10 @@ function newsFeed() {
         {{__news_feed__}}        
       </div>
     </div>`;
+
+  if (newsFeed.length === 0) {
+    newsFeed = store.feeds = makeFeeds(getData(NEWS_URL));
+  }
 
   for (let i = (store.currentPage - 1) * 10; i < store.currentPage * 10; i++) {
     newsList.push(`
@@ -108,6 +120,14 @@ function newsDetail() {
       </div>
     </div>
   `;
+
+  for (let i = 0; i < store.feeds.length; i++) {
+    if (store.feeds[i].id === Number(id)) {
+      store.feeds[i].read = true;
+      break;
+    }
+  }
+
   function makeComment(comments, called = 0) {
     const commentString = [];
     for (let i = 0; i < comments.length; i++) {
