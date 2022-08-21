@@ -117,7 +117,9 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"app.js":[function(require,module,exports) {
+})({"app.ts":[function(require,module,exports) {
+"use strict";
+
 var container = document.getElementById("root");
 var ajax = new XMLHttpRequest();
 var content = document.createElement("div");
@@ -176,15 +178,18 @@ function newsDetail() {
     }
   }
 
-  function makeComment(comments) {
-    var called = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+  function makeComment(comments, called) {
+    if (called === void 0) {
+      called = 0;
+    }
+
     var commentString = [];
 
-    for (var _i = 0; _i < comments.length; _i++) {
-      commentString.push("\n      <div style=\"padding-left: ".concat(called * 40, "px;\" class=\"mt-4\">\n          <div class=\"text-gray-400\">\n            <i class=\"fa fa-sort-up mr-2\"></i>\n            <strong>").concat(comments[_i].user, "</strong> ").concat(comments[_i].time_ago, "\n          </div>\n          <p class=\"text-gray-700\">").concat(comments[_i].content, "</p>\n        </div>  \n      "));
+    for (var i = 0; i < comments.length; i++) {
+      commentString.push("\n      <div style=\"padding-left: ".concat(called * 40, "px;\" class=\"mt-4\">\n          <div class=\"text-gray-400\">\n            <i class=\"fa fa-sort-up mr-2\"></i>\n            <strong>").concat(comments[i].user, "</strong> ").concat(comments[i].time_ago, "\n          </div>\n          <p class=\"text-gray-700\">").concat(comments[i].content, "</p>\n        </div>  \n      "));
 
-      if (comments[_i].comments.length > 0) {
-        commentString.push(makeComment(comments[_i].comments, called + 1));
+      if (comments[i].comments.length > 0) {
+        commentString.push(makeComment(comments[i].comments, called + 1));
       }
     }
 
@@ -237,7 +242,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51920" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50356" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -413,5 +418,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","app.js"], null)
-//# sourceMappingURL=/app.c328ef1a.js.map
+},{}]},{},["../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","app.ts"], null)
+//# sourceMappingURL=/app.c61986b1.js.map
